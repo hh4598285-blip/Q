@@ -28,12 +28,13 @@ jobs:
           gradle-version: "8.7"
 
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
+        with:
+          packages: ''
 
       - name: Install Android SDK packages
         run: |
           set -euo pipefail
-          yes | sdkmanager --licenses >/dev/null || true
           sdkmanager --install "platform-tools" "platforms;android-35" "build-tools;35.0.0"
 
       - name: Build universal debug APK
