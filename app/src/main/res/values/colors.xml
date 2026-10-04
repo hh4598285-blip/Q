@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="screen_bg">#080B12</color>
+    <color name="panel_bg">#111827</color>
+    <color name="panel_bg_2">#172033</color>
+    <color name="accent">#5EE7FF</color>
+    <color name="accent_2">#7C5CFF</color>
+    <color name="text_primary">#F5F7FF</color>
+    <color name="text_secondary">#A9B4C7</color>
+    <color name="text_muted">#6F7B91</color>
+    <color name="button_text">#071019</color>
+    <color name="status_ok">#52F2A3</color>
+    <color name="status_bad">#FF6B8A</color>
+</resources>
