@@ -50,7 +50,7 @@ jobs:
           unzip -t "$APK" >/dev/null
           "$ANDROID_HOME/build-tools/35.0.0/aapt2" dump badging "$APK" | tee badging.txt
           grep -F "package: name='com.daniel.bluetoothmic.clean' versionCode='1' versionName='1.0.0'" badging.txt
-          grep -F "sdkVersion:'26'" badging.txt
+          grep -F "minSdkVersion:'26'" badging.txt
           grep -F "targetSdkVersion:'30'" badging.txt
           zipinfo -1 "$APK" | grep -F "AndroidManifest.xml"
           zipinfo -1 "$APK" | grep -F "resources.arsc"
