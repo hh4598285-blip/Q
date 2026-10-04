@@ -27,11 +27,14 @@ jobs:
         with:
           gradle-version: "8.7"
 
-      - name: Install Android SDK 35
+      - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Install SDK packages
-        run: sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+      - name: Install Android SDK packages
+        run: |
+          set -euo pipefail
+          yes | sdkmanager --licenses >/dev/null || true
+          sdkmanager --install "platform-tools" "platforms;android-35" "build-tools;35.0.0"
 
       - name: Build universal debug APK
         run: gradle --no-daemon clean assembleDebug
