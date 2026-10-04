@@ -72,6 +72,7 @@ private fun WhatsBridgeScreen(onOpen: (String) -> Unit) {
             verticalArrangement = Arrangement.Center
         ) {
             Text("WhatsBridge", fontSize = 36.sp, fontWeight = FontWeight.ExtraBold)
+            Text("גישה מאומתת ובטוחה", fontSize = 14.sp, color = MaterialTheme.colorScheme.primary)
             Spacer(Modifier.height(6.dp))
             Text(
                 "גישה מהירה לצ'אט WhatsApp",
