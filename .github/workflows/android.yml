@@ -48,7 +48,7 @@ jobs:
           test -s "$APK"
           file "$APK"
           unzip -t "$APK" >/dev/null
-          aapt2 dump badging "$APK" | tee badging.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt2" dump badging "$APK" | tee badging.txt
           grep -F "package: name='com.daniel.bluetoothmic.clean' versionCode='1' versionName='1.0.0'" badging.txt
           grep -F "sdkVersion:'26'" badging.txt
           grep -F "targetSdkVersion:'30'" badging.txt
@@ -60,8 +60,8 @@ jobs:
         run: |
           set -euo pipefail
           APK="app/build/outputs/apk/debug/app-debug.apk"
-          apksigner verify --verbose "$APK"
-          apksigner verify --print-certs "$APK" | tee signature.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose "$APK"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs "$APK" | tee signature.txt
 
       - name: Calculate APK size and SHA-256
         shell: bash
