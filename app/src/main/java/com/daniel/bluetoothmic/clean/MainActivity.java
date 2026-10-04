@@ -415,27 +415,12 @@ public final class MainActivity extends Activity {
     }
 
     private boolean ensureBluetoothPermissions() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            List<String> missing = new ArrayList<>();
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT)
-                    != PackageManager.PERMISSION_GRANTED) {
-                missing.add(Manifest.permission.BLUETOOTH_CONNECT);
-            }
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN)
-                    != PackageManager.PERMISSION_GRANTED) {
-                missing.add(Manifest.permission.BLUETOOTH_SCAN);
-            }
-            if (!missing.isEmpty()) {
-                // targetSdk 30 uses Android's legacy Bluetooth compatibility model.
-                // Requesting these permissions is attempted only where the OS exposes them.
-                try {
-                    ActivityCompat.requestPermissions(this, missing.toArray(new String[0]), REQUEST_BT);
-                } catch (Exception e) {
-                    showError("Android לא אפשר בקשת הרשאות Bluetooth: " + safeMessage(e));
-                }
-                return false;
-            }
-        }
+        // This build deliberately targets API 30. Android documents that apps
+        // targeting Android 11/API 30 or lower use the legacy BLUETOOTH permission
+        // model; the Android 12 Nearby Devices runtime model is for target 31+.
+        // We still declare BLUETOOTH_SCAN/CONNECT so the project can be migrated
+        // cleanly later, but we do not incorrectly block an API-30-targeted app
+        // by requesting permissions that are not part of its runtime model.
         return true;
     }
 
